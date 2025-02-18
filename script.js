@@ -2,7 +2,8 @@ const output = document.getElementById("output");
 const loading = document.createElement("div");
 loading.id = "loading";
 loading.innerText = "Loading...";
-output.appendChild(loading);
+const errorDiv = document.createElement("div");
+errorDiv.id = "error";
 
 function downloadImage(url) {
     return new Promise((resolve, reject) => {
@@ -32,11 +33,9 @@ function downloadImages() {
         })
         .catch(error => {
             loading.remove();
-            const errorDiv = document.createElement("div");
-            errorDiv.id = "error";
             errorDiv.innerText = error;
             output.appendChild(errorDiv);
         });
 }
 
-downloadImages();
+setTimeout(downloadImages, 100); // Ensures a small delay before execution for Cypress stability.
