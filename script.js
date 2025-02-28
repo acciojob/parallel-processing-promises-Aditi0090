@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img.src = url;
 
             img.onload = () => resolve(img);
-            img.onerror = () => reject(Failed to load image: ${url});
+            img.onerror = () => reject(`Failed to load image: ${url}`);
         });
     }
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         Promise.all(imagePromises)
             .then(downloadedImages => {
-                loading.style.display = "none"; // Hide loading message
+                loading.style.display = "none"; 
                 downloadedImages.forEach(img => output.appendChild(img));
             })
             .catch(error => {
